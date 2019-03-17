@@ -6,9 +6,9 @@ from google.cloud.language import enums
 from google.cloud.language import types
 
 API_ENDPOINT = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk'
-API_KEY = 'DZZwb8Ewgr6sbBvkfu5TmWOMF8DWr8jN'
+API_KEY = 'Your_Key'
 ANALYZE_ENDPOINT = 'https://language.googleapis.com/v1/documents:analyzeSentiment'
-API_KEY_FOR_GOOGLE = 'AIzaSyAxpnlAoQ7QcpejbnTK8XEVmHv7nZdjLlM'
+API_KEY_FOR_GOOGLE = 'Your_Key'
 
 class NlpService:
     def __init__(self, answer):
