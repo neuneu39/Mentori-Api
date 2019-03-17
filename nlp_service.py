@@ -7,7 +7,7 @@ from google.cloud.language import types
 
 API_ENDPOINT = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk'
 API_KEY = 'DZZwb8Ewgr6sbBvkfu5TmWOMF8DWr8jN'
-ANALYZE_ENDPOINT = 'https://language.googleapis.com/v1/documents:analyzeEntities'
+ANALYZE_ENDPOINT = 'https://language.googleapis.com/v1/documents:analyzeSentiment'
 API_KEY_FOR_GOOGLE = 'AIzaSyAxpnlAoQ7QcpejbnTK8XEVmHv7nZdjLlM'
 
 class NlpService:
@@ -35,6 +35,16 @@ class NlpService:
             },
             "encodingType": "UTF8"
         }
-        return requests.post(url, headers=header, json=body).json()
+        req = requests.post(url, headers=header, json=body)
+        if not req.status_code == 200:
+            return 'サーバーの問題が発生しました'
+        req_json = requests.post(url, headers=header, json=body).json()
+        if not req_json['documentSentiment']:
+            return '私ちょっといま体調悪いかもです'
+        elif req_json['documentSentiment']['magnitude'] > 0.5 and req_json['documentSentiment']['magnitude'] > 0.5:
+            return 'なんか良さそうですね'
+        elif req_json['documentSentiment']['magnitude'] > 0.5 and req_json['documentSentiment']['magnitude'] < -0.5:
+            return '...そうなんですね'
+        return 'うんうん'
 
 
