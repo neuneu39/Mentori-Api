@@ -6,7 +6,7 @@ from google.cloud.language import enums
 from google.cloud.language import types
 
 API_ENDPOINT = 'https://api.a3rt.recruit-tech.co.jp/talk/v1/smalltalk'
-API_KEY = 'Your_Key'
+API_KEY_FOR_RECRUIT = 'Your_Key'
 ANALYZE_ENDPOINT = 'https://language.googleapis.com/v1/documents:analyzeSentiment'
 API_KEY_FOR_GOOGLE = 'Your_Key'
 
@@ -16,7 +16,7 @@ class NlpService:
 
     def get_response_answer(self):
         api_and_input_text = {
-            'apikey': (None, API_KEY),
+            'apikey': (None, API_KEY_FOR_RECRUIT),
             'query': (None, self.answer),
         }
         req = requests.post(API_ENDPOINT, files=api_and_input_text)
